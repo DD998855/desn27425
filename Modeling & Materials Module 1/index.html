@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Modeling and Materials Fall 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <style>
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+  }
+body {
+  font-size:16px;
+  }
+h1 { 
+  font-size:30px;
+  }
+h2 {
+  font-size:25px;
+  }
+  h3 {
+  font-size:18px;
+  }
+img {
+  width: 100%;
+  height: 100%;
+}
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.w3-half img{
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+  } */
+.w3-half img:hover{
+  opacity:1
+  }
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 2000px;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Preserve image proportions in Design Challenge 1 without changing source files. */
+#DesignChallenge1 .grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+#DesignChallenge1 .grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+/* Keep the full image and its existing caption together within the viewport. */
+#modal01.dc1-fit { overflow: hidden; }
+#modal01.dc1-fit .w3-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: min(900px, calc(100% - 100px)) !important;
+  height: calc(100vh - 40px);
+  height: calc(100dvh - 40px);
+  margin: 20px auto !important;
+  box-sizing: border-box;
+}
+#modal01.dc1-fit #img01 {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 0;
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+}
+#modal01.dc1-fit #caption {
+  flex: 0 0 auto;
+  margin: 12px 0 0;
+  font-size: clamp(14px, 2.5vh, 25px);
+  line-height: 1.4;
+}
+#modal01.dc1-fit > span {
+  z-index: 1;
+  font-size: 32px !important;
+  line-height: 1;
+  padding: 8px 12px;
+}
+@media (max-width: 600px) {
+  #modal01.dc1-fit .w3-modal-content {
+    width: calc(100% - 24px) !important;
+    padding: 32px 8px 8px !important;
+  }
+}
+
+/* A subtle entrance when a Design Challenge 1 image is opened. */
+#modal01.dc1-fit {
+  animation: dc1-backdrop-in 180ms ease-out;
+}
+#modal01.dc1-fit .w3-modal-content {
+  transform-origin: center center;
+  animation: dc1-image-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes dc1-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes dc1-image-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #modal01.dc1-fit,
+  #modal01.dc1-fit .w3-modal-content {
+    animation: none;
+  }
+}
+</style>
+    </head>
+        <body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft" style="display:none;font-size:22px"></a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>IxD<br>DESN 27425 <br> Fall 2026</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Module1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 1</a> 
+    <a href="#DesignChallenge1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Design Challenge 1</a> 
+    <a href="#DesignChallenge2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Design Challenge 2</a>
+    <a href="#MaterialWorkshop1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Material Workshop 1</a>
+    <a href="#MaterialWorkshop2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Material Workshop 2</a>
+    <a href="#Project1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project 1</a> 
+  </div>
+</nav>
+
+<!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+<!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+-->
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="default">
+    <h1 class="w3-jumbo" id="Home"><b>Modeling & Materials</b></h1>
+    <h1 class="w3-xxxlarge w3-text-blue"><b>Weekly Design Challenge Template</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Object Selection and Introduction to Modeling</b></h1>
+    <hr style="width:50px;border:5px solid grey" class="w3-round">
+  </div>
+  <!-- Boilerplate -->
+  <div id="Module1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Module 1</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h3>I photographed eight everyday objects to study their shapes and details. I also tried modeling a button myself in Blender and wrote prompts for AI to generate a smartwatch model.
+    </h3>
+  </div>
+  
+  <!-- Project 1 Photo grid (modal) -->
+  <div id="DesignChallenge1" >
+    <h2>Design Challenge 1</h2>
+    <div class="grid">
+      <img src="images/DesignChallenge1/1.jpg" style="width:100%" onclick="onClick(this)" alt="This is my smartwatch. I photographed it from different angles to record the rounded case and curved strap as references for my AI modeling experiment.">
+      <img src="images/DesignChallenge1/2.jpg" style="width:100%" onclick="onClick(this)" alt="This is the back of my smartwatch. The circular sensor area and small contact points show details that are not visible from the front.">
+      <img src="images/DesignChallenge1/3.jpg" style="width:100%" onclick="onClick(this)" alt="This side view of my smartwatch shows the case thickness, side button and circular crown. These details are useful references for the watch model.">
+      <img src="images/DesignChallenge1/4.jpg" style="width:100%" onclick="onClick(this)" alt="I laid my smartwatch flat to show the full strap, buckle and adjustment holes. This view records the proportions of the different parts.">
+      <img src="images/DesignChallenge1/5.jpg" style="width:100%" onclick="onClick(this)" alt="This is my USB flash drive with its connector extended. Its rectangular body is a useful example of an everyday object built around a simple box-like shape.">
+    
+      <img src="images/DesignChallenge1/6.jpg" style="width:100%" onclick="onClick(this)" alt="This angled view of my USB drive shows the thickness of the casing and its sliding section. It helps me understand the object beyond its flat outline.">
+      <img src="images/DesignChallenge1/7.jpg" style="width:100%" onclick="onClick(this)" alt="This is the reverse side of my USB drive. It records the casing divisions and the opening at the end.">
+      <img src="images/DesignChallenge1/8.jpg" style="width:100%" onclick="onClick(this)" alt="This is my face cream jar. Its rounded body is close to a cylinder, while the lid and decoration add smaller details.">
+      <img src="images/DesignChallenge1/9.jpg" style="width:100%" onclick="onClick(this)" alt="This top view of my face cream jar shows the curved lid and gold-colored heart decoration. These parts could be studied separately when planning a model.">
+      <img src="images/DesignChallenge1/10.jpg" style="width:100%" onclick="onClick(this)" alt="This is my large button-shaped hair clip. I used its circular rim and four holes as the reference for my own Blender modeling attempt.">
+    
+      <img src="images/DesignChallenge1/11.jpg" style="width:100%" onclick="onClick(this)" alt="This is the back of my button-shaped hair clip. The metal clip shows how the decorative button connects to the fastening part.">
+      <img src="images/DesignChallenge1/12.jpg" style="width:100%" onclick="onClick(this)" alt="This side view of my button clip shows the thickness of the button and the space beneath the metal clip. It provides depth information that the front view does not show.">
+      <img src="images/DesignChallenge1/13.jpg" style="width:100%" onclick="onClick(this)" alt="This is a small pumpkin that I drew on. Its shape is irregular, and the drawn face is surface decoration rather than part of the geometry.">
+      <img src="images/DesignChallenge1/14.jpg" style="width:100%" onclick="onClick(this)" alt="This top view shows the uneven grooves and lobes of my small pumpkin. It is not a perfect sphere, which makes it an interesting natural form to study.">
+      <img src="images/DesignChallenge1/15.jpg" style="width:100%" onclick="onClick(this)" alt="This is my ear-hook earphone, which sits around the ear. It combines rounded ends with a curved connecting section.">
+    
+     <img src="images/DesignChallenge1/16.jpg" style="width:100%" onclick="onClick(this)" alt="This is another angle of my ear-hook earphone. It shows the connecting curve and the spacing between its rounded ends more clearly.">
+      <img src="images/DesignChallenge1/17.jpg" style="width:100%" onclick="onClick(this)" alt="This is my hair tie with a small plush chick attached. The black elastic loop and the soft yellow chick combine a simple ring shape with an irregular fabric form.">
+      <img src="images/DesignChallenge1/18.jpg" style="width:100%" onclick="onClick(this)" alt="This is the back of my chick hair tie. It shows the fabric label and how the plush chick sits against the elastic loop.">
+      <img src="images/DesignChallenge1/19.jpg" style="width:100%" onclick="onClick(this)" alt="This is my small duck figure, which appears to be Psyduck. The bill, arms and feet make it more complex than a single basic shape.">
+      <img src="images/DesignChallenge1/20.jpg" style="width:100%" onclick="onClick(this)" alt="This side view of my duck figure shows the projecting bill and tail. It helps document the depth and proportions that are harder to see from the front.">
+   
+      <img src="images/DesignChallenge1/21.png" style="width:100%" onclick="onClick(this)" alt="I tried modeling this button myself in Blender. This top view shows my attempt at the circular body, raised rim and four holes.">
+      <img src="images/DesignChallenge1/22.png" style="width:100%" onclick="onClick(this)" alt="This angled view shows the thickness of my Blender button model. The edges still look faceted, so making the circular form smoother is a possible next step.">
+      <img src="images/DesignChallenge1/23.png" style="width:100%" onclick="onClick(this)" alt="I wrote prompts for AI to generate this smartwatch model; I did not model it manually. This Blender view shows the back of the generated watch, including the sensor area, strap holes and buckle.">
+      <img src="images/DesignChallenge1/24.png" style="width:100%" onclick="onClick(this)" alt="This is a front preview of the smartwatch model generated by AI from my prompts. It shows the case, screen, side controls and curved strap together.">
+      <img src="images/DesignChallenge1/25.png" style="width:100%" onclick="onClick(this)" alt="This rendered Blender view shows the AI-generated smartwatch with materials, lighting and a ground shadow. My contribution to the model was writing the prompts.">
+    </div>
+  </div>
+  
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="DesignChallenge2" class="w3-row-padding">
+    <h2>Design Challenge 2</h2>
+    <div class="grid">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+    
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+    
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+    
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+   
+     <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="MaterialWorkshop1" >
+    <h2>Material Workshop 1</h2>
+    <div class="grid">
+      <img src="images/Workshop1/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades<a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+      <img src="images/Workshop1/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+      <img src="images/Workshop1/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="MaterialWorkshop2" >
+    <h2>Material Workshop 2</h2>
+    <div class="grid">
+      <img src="images/Workshop2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+      <img src="images/Workshop2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+      <img src="images/Workshop2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+  <!-- Boilerplate -->
+  <div id="Project1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 1</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Project 1 Models</h2>
+    <h2>Published 3D Model 1</h2>
+    <p>PLACEHOLDER TEXT, put a description here or you will lose grades
+    </p>
+    <img src="images/final/happy.png" style="width:50%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://hudak.phoenix.sheridanc.on.ca/P1Stuff/Index.html'></iframe></div>">
+    <h2>Published 3D Model 2</h2>
+    <p>PLACEHOLDER TEXT, put a description here or you will lose grades
+    </p>
+    <img src="images/final/happy.png" style="width:50%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://hudak.phoenix.sheridanc.on.ca/P1Stuff/Index.html'></iframe></div>">
+    <h2>Published 3D Model 3</h2>
+    <p>PLACEHOLDER TEXT, put a description here or you will lose grades
+    </p>
+    <img src="images/final/happy.png" style="width:50%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://hudak.phoenix.sheridanc.on.ca/P1Stuff/Index.html'></iframe></div>">
+  </div>
+  
+   <!-- Modal for full size images on click-->
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+      <img src="img01" id="img01" class="w3-image">
+      <h2 id="caption"></h2>
+
+      <!-- <div id="urLink"></div> -->
+      <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+    <!-- </div> -->
+  </div>
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+</div>
+<script>
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("modal01").classList.toggle("dc1-fit", !!element.closest("#DesignChallenge1"));
+  document.getElementById("img01").src = element.src;
+
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+
+  // var captionUrl = document.getElementById("urLink");
+  // captionUrl.innerHTML = element.url;
+
+  //document.getElementById("urLink").src = element.url;
+}
+</script>
+
+</body>
+</html>
