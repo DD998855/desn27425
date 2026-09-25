@@ -60,12 +60,14 @@ img {
     height: 100%;
 }
 
-/* Preserve image proportions in Design Challenge 1 without changing source files. */
-#DesignChallenge1 .grid {
+/* Preserve image proportions in both Design Challenge galleries without changing source files. */
+#DesignChallenge1 .grid,
+#DesignChallenge2 .grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
-#DesignChallenge1 .grid img {
+#DesignChallenge1 .grid img,
+#DesignChallenge2 .grid img {
   display: block;
   width: 100%;
   height: auto;
@@ -74,49 +76,60 @@ img {
   object-position: center;
   cursor: pointer;
 }
-/* Keep the full image and its existing caption together within the viewport. */
-#modal01.dc1-fit { overflow: hidden; }
-#modal01.dc1-fit .w3-modal-content {
+@media (max-width: 800px) {
+  #DesignChallenge1 .grid,
+  #DesignChallenge2 .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Center each opened image with its caption immediately below it. */
+#modal01.challenge-fit {
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+#modal01.challenge-fit .w3-modal-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: min(900px, calc(100% - 100px)) !important;
-  height: calc(100vh - 40px);
-  height: calc(100dvh - 40px);
+  height: auto;
+  max-height: calc(100dvh - 40px);
   margin: 20px auto !important;
   box-sizing: border-box;
 }
-#modal01.dc1-fit #img01 {
-  flex: 1 1 0;
-  min-height: 0;
-  height: 0;
-  width: 100%;
-  max-height: none;
+#modal01.challenge-fit #img01 {
+  flex: 0 1 auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(75dvh, calc(100dvh - 180px));
   object-fit: contain;
 }
-#modal01.dc1-fit #caption {
+#modal01.challenge-fit #caption {
   flex: 0 0 auto;
-  margin: 12px 0 0;
+  width: 100%;
+  margin: 10px 0 0;
   font-size: clamp(14px, 2.5vh, 25px);
   line-height: 1.4;
 }
-#modal01.dc1-fit > span {
+#modal01.challenge-fit > span {
   z-index: 1;
   font-size: 32px !important;
   line-height: 1;
   padding: 8px 12px;
 }
 @media (max-width: 600px) {
-  #modal01.dc1-fit .w3-modal-content {
+  #modal01.challenge-fit .w3-modal-content {
     width: calc(100% - 24px) !important;
     padding: 32px 8px 8px !important;
   }
 }
-
-/* A subtle entrance when a Design Challenge 1 image is opened. */
-#modal01.dc1-fit {
+/* A subtle entrance when either Design Challenge image is opened. */
+#modal01.challenge-fit {
   animation: dc1-backdrop-in 180ms ease-out;
 }
-#modal01.dc1-fit .w3-modal-content {
+#modal01.challenge-fit .w3-modal-content {
   transform-origin: center center;
   animation: dc1-image-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
@@ -129,8 +142,8 @@ img {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
-  #modal01.dc1-fit,
-  #modal01.dc1-fit .w3-modal-content {
+  #modal01.challenge-fit,
+  #modal01.challenge-fit .w3-modal-content {
     animation: none;
   }
 }
@@ -228,38 +241,34 @@ img {
   
   <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
 
-  <div id="DesignChallenge2" class="w3-row-padding">
+  <div id="DesignChallenge2">
     <h2>Design Challenge 2</h2>
     <div class="grid">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-    
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-    
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-    
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-   
-     <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
-      <img src="images/DesignChallenge2/happy.png" style="width:100%" onclick="onClick(this)" alt="put a description here or you will lose grades">
+      <img src="images/DesignChallenge2/1.png" style="width:100%" onclick="onClick(this)" alt="I wrote a prompt describing the duck references and what I wanted ChatGPT to model.">
+      <img src="images/DesignChallenge2/2.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT studied my duck photos and identified the main shapes and missing details.">
+      <img src="images/DesignChallenge2/3.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT suggested how to build the mesh, UVs, materials, and renders.">
+      <img src="images/DesignChallenge2/4.png" style="width:100%" onclick="onClick(this)" alt="I reviewed ChatGPT&#x27;s plan and trade-offs before starting the model.">
+      <img src="images/DesignChallenge2/5.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT delivered an editable clay model and supporting files.">
+      <img src="images/DesignChallenge2/6.png" style="width:100%" onclick="onClick(this)" alt="This first clay render let me check the duck&#x27;s overall shape.">
+      <img src="images/DesignChallenge2/7.png" style="width:100%" onclick="onClick(this)" alt="In Blender&#x27;s side view, I noticed the duck&#x27;s backside looked too flat.">
+      <img src="images/DesignChallenge2/8.png" style="width:100%" onclick="onClick(this)" alt="I turned on Proportional Editing and pulled selected vertices outward to round the backside.">
+      <img src="images/DesignChallenge2/9.png" style="width:100%" onclick="onClick(this)" alt="The adjusted side view shows a fuller, smoother backside.">
+      <img src="images/DesignChallenge2/10.png" style="width:100%" onclick="onClick(this)" alt="I asked ChatGPT to turn the white clay duck into a yellow plastic toy.">
+      <img src="images/DesignChallenge2/11.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT set up color, roughness, metallic, and normal textures in Blender.">
+      <img src="images/DesignChallenge2/12.png" style="width:100%" onclick="onClick(this)" alt="The first material render shows a glossy yellow plastic duck close to my reference.">
+      <img src="images/DesignChallenge2/13.png" style="width:100%" onclick="onClick(this)" alt="I checked the duck&#x27;s front view and its material setup.">
+      <img src="images/DesignChallenge2/14.png" style="width:100%" onclick="onClick(this)" alt="I checked the side view to see how the finish worked across the whole body.">
+      <img src="images/DesignChallenge2/15.png" style="width:100%" onclick="onClick(this)" alt="I started modeling a pumpkin based on one I painted myself.">
+      <img src="images/DesignChallenge2/16.png" style="width:100%" onclick="onClick(this)" alt="I added orange paint and a brown stem while keeping the pumpkin&#x27;s uneven grooves.">
+      <img src="images/DesignChallenge2/17.png" style="width:100%" onclick="onClick(this)" alt="I checked how the paint and face texture wrapped onto the pumpkin&#x27;s underside.">
+      <img src="images/DesignChallenge2/18.png" style="width:100%" onclick="onClick(this)" alt="Because I painted the face by hand, I put its irregular eyes, smile, and heart into a texture image instead of raised geometry.">
+      <img src="images/DesignChallenge2/19.png" style="width:100%" onclick="onClick(this)" alt="I checked the pumpkin&#x27;s painted face under Blender&#x27;s rendered lighting.">
+      <img src="images/DesignChallenge2/20.png" style="width:100%" onclick="onClick(this)" alt="Fitting the thin speaker rim onto the earphone&#x27;s curved shell was a tricky part of the model.">
+      <img src="images/DesignChallenge2/21.png" style="width:100%" onclick="onClick(this)" alt="This clay view shows the full earphone shape and its curved connecting band.">
+      <img src="images/DesignChallenge2/22.png" style="width:100%" onclick="onClick(this)" alt="I added a metallic material and adjusted its texture maps for a reflective finish.">
+      <img src="images/DesignChallenge2/23.png" style="width:100%" onclick="onClick(this)" alt="In rendered view, I checked the chrome reflections and speaker grille.">
+      <img src="images/DesignChallenge2/24.png" style="width:100%" onclick="onClick(this)" alt="Following my teacher&#x27;s Cinema 4D tutorial, I modeled the desk lamp&#x27;s shade, arm, and base.">
+      <img src="images/DesignChallenge2/25.png" style="width:100%" onclick="onClick(this)" alt="I finished the tutorial lamp with a dark exterior and a light interior.">
     </div>
   </div>
 
@@ -326,10 +335,12 @@ img {
 
 // Modal Image Gallery
 function onClick(element) {
-  document.getElementById("modal01").classList.toggle("dc1-fit", !!element.closest("#DesignChallenge1"));
+  var modal = document.getElementById("modal01");
+  var isChallenge = !!element.closest("#DesignChallenge1, #DesignChallenge2");
+  modal.classList.toggle("challenge-fit", isChallenge);
   document.getElementById("img01").src = element.src;
 
-  document.getElementById("modal01").style.display = "block";
+  modal.style.display = isChallenge ? "flex" : "block";
   var captionText = document.getElementById("caption");
   captionText.innerHTML = element.alt;
 
