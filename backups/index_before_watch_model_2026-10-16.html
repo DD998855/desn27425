@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Modeling and Materials Fall 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <style>
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+  }
+body {
+  font-size:16px;
+  }
+h1 { 
+  font-size:30px;
+  }
+h2 {
+  font-size:25px;
+  }
+  h3 {
+  font-size:18px;
+  }
+img {
+  width: 100%;
+  height: 100%;
+}
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.w3-half img{
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+  } */
+.w3-half img:hover{
+  opacity:1
+  }
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 2000px;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Preserve image proportions across the process galleries without changing source files. */
+#DesignChallenge1 .grid,
+#DesignChallenge2 .grid,
+#MaterialWorkshop1 .grid,
+#MaterialWorkshop2 .grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+#DesignChallenge1 .grid img,
+#DesignChallenge2 .grid img,
+#MaterialWorkshop1 .grid img,
+#MaterialWorkshop2 .grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+@media (max-width: 800px) {
+  #DesignChallenge1 .grid,
+  #DesignChallenge2 .grid,
+  #MaterialWorkshop1 .grid,
+  #MaterialWorkshop2 .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Center each opened image with its caption immediately below it. */
+#modal01.challenge-fit {
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+#modal01.challenge-fit .w3-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(900px, calc(100% - 100px)) !important;
+  height: auto;
+  max-height: calc(100dvh - 40px);
+  margin: 20px auto !important;
+  box-sizing: border-box;
+}
+#modal01.challenge-fit #img01 {
+  flex: 0 1 auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(75dvh, calc(100dvh - 180px));
+  object-fit: contain;
+}
+#modal01.challenge-fit #caption {
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 10px 0 0;
+  font-size: clamp(14px, 2.5vh, 25px);
+  line-height: 1.4;
+}
+#modal01.challenge-fit > span {
+  z-index: 1;
+  font-size: 32px !important;
+  line-height: 1;
+  padding: 8px 12px;
+}
+@media (max-width: 600px) {
+  #modal01.challenge-fit .w3-modal-content {
+    width: calc(100% - 24px) !important;
+    padding: 32px 8px 8px !important;
+  }
+}
+/* A subtle entrance when either Design Challenge image is opened. */
+#modal01.challenge-fit {
+  animation: dc1-backdrop-in 180ms ease-out;
+}
+#modal01.challenge-fit .w3-modal-content {
+  transform-origin: center center;
+  animation: dc1-image-in 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes dc1-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes dc1-image-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #modal01.challenge-fit,
+  #modal01.challenge-fit .w3-modal-content {
+    animation: none;
+  }
+}
+</style>
+    </head>
+        <body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft" style="display:none;font-size:22px"></a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>IxD<br>DESN 27425 <br> Fall 2026</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Module1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 1</a> 
+    <a href="#DesignChallenge1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Design Challenge 1</a> 
+    <a href="#DesignChallenge2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Design Challenge 2</a>
+    <a href="#MaterialWorkshop1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Material Workshop 1</a>
+    <a href="#MaterialWorkshop2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Material Workshop 2</a>
+    <a href="#Project1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project 1</a> 
+  </div>
+</nav>
+
+<!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+<!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+-->
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="default">
+    <h1 class="w3-jumbo" id="Home"><b>Modeling & Materials</b></h1>
+    <h1 class="w3-xxxlarge w3-text-blue"><b>Weekly Design Challenge Template</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Object Selection and Introduction to Modeling</b></h1>
+    <hr style="width:50px;border:5px solid grey" class="w3-round">
+  </div>
+  <!-- Boilerplate -->
+  <div id="Module1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Module 1</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h3>I photographed eight everyday objects to study their shapes and details. I also tried modeling a button myself in Blender and wrote prompts for AI to generate a smartwatch model.
+    </h3>
+  </div>
+  
+  <!-- Project 1 Photo grid (modal) -->
+  <div id="DesignChallenge1" >
+    <h2>Design Challenge 1</h2>
+    <div class="grid">
+      <img src="images/DesignChallenge1/1.jpg" style="width:100%" onclick="onClick(this)" alt="This is my smartwatch. I photographed it from different angles to record the rounded case and curved strap as references for my AI modeling experiment.">
+      <img src="images/DesignChallenge1/2.jpg" style="width:100%" onclick="onClick(this)" alt="This is the back of my smartwatch. The circular sensor area and small contact points show details that are not visible from the front.">
+      <img src="images/DesignChallenge1/3.jpg" style="width:100%" onclick="onClick(this)" alt="This side view of my smartwatch shows the case thickness, side button and circular crown. These details are useful references for the watch model.">
+      <img src="images/DesignChallenge1/4.jpg" style="width:100%" onclick="onClick(this)" alt="I laid my smartwatch flat to show the full strap, buckle and adjustment holes. This view records the proportions of the different parts.">
+      <img src="images/DesignChallenge1/5.jpg" style="width:100%" onclick="onClick(this)" alt="This is my USB flash drive with its connector extended. Its rectangular body is a useful example of an everyday object built around a simple box-like shape.">
+    
+      <img src="images/DesignChallenge1/6.jpg" style="width:100%" onclick="onClick(this)" alt="This angled view of my USB drive shows the thickness of the casing and its sliding section. It helps me understand the object beyond its flat outline.">
+      <img src="images/DesignChallenge1/7.jpg" style="width:100%" onclick="onClick(this)" alt="This is the reverse side of my USB drive. It records the casing divisions and the opening at the end.">
+      <img src="images/DesignChallenge1/8.jpg" style="width:100%" onclick="onClick(this)" alt="This is my face cream jar. Its rounded body is close to a cylinder, while the lid and decoration add smaller details.">
+      <img src="images/DesignChallenge1/9.jpg" style="width:100%" onclick="onClick(this)" alt="This top view of my face cream jar shows the curved lid and gold-colored heart decoration. These parts could be studied separately when planning a model.">
+      <img src="images/DesignChallenge1/10.jpg" style="width:100%" onclick="onClick(this)" alt="This is my large button-shaped hair clip. I used its circular rim and four holes as the reference for my own Blender modeling attempt.">
+    
+      <img src="images/DesignChallenge1/11.jpg" style="width:100%" onclick="onClick(this)" alt="This is the back of my button-shaped hair clip. The metal clip shows how the decorative button connects to the fastening part.">
+      <img src="images/DesignChallenge1/12.jpg" style="width:100%" onclick="onClick(this)" alt="This side view of my button clip shows the thickness of the button and the space beneath the metal clip. It provides depth information that the front view does not show.">
+      <img src="images/DesignChallenge1/13.jpg" style="width:100%" onclick="onClick(this)" alt="This is a small pumpkin that I drew on. Its shape is irregular, and the drawn face is surface decoration rather than part of the geometry.">
+      <img src="images/DesignChallenge1/14.jpg" style="width:100%" onclick="onClick(this)" alt="This top view shows the uneven grooves and lobes of my small pumpkin. It is not a perfect sphere, which makes it an interesting natural form to study.">
+      <img src="images/DesignChallenge1/15.jpg" style="width:100%" onclick="onClick(this)" alt="This is my ear-hook earphone, which sits around the ear. It combines rounded ends with a curved connecting section.">
+    
+     <img src="images/DesignChallenge1/16.jpg" style="width:100%" onclick="onClick(this)" alt="This is another angle of my ear-hook earphone. It shows the connecting curve and the spacing between its rounded ends more clearly.">
+      <img src="images/DesignChallenge1/17.jpg" style="width:100%" onclick="onClick(this)" alt="This is my hair tie with a small plush chick attached. The black elastic loop and the soft yellow chick combine a simple ring shape with an irregular fabric form.">
+      <img src="images/DesignChallenge1/18.jpg" style="width:100%" onclick="onClick(this)" alt="This is the back of my chick hair tie. It shows the fabric label and how the plush chick sits against the elastic loop.">
+      <img src="images/DesignChallenge1/19.jpg" style="width:100%" onclick="onClick(this)" alt="This is my small duck figure, which appears to be Psyduck. The bill, arms and feet make it more complex than a single basic shape.">
+      <img src="images/DesignChallenge1/20.jpg" style="width:100%" onclick="onClick(this)" alt="This side view of my duck figure shows the projecting bill and tail. It helps document the depth and proportions that are harder to see from the front.">
+   
+      <img src="images/DesignChallenge1/21.png" style="width:100%" onclick="onClick(this)" alt="I tried modeling this button myself in Blender. This top view shows my attempt at the circular body, raised rim and four holes.">
+      <img src="images/DesignChallenge1/22.png" style="width:100%" onclick="onClick(this)" alt="This angled view shows the thickness of my Blender button model. The edges still look faceted, so making the circular form smoother is a possible next step.">
+      <img src="images/DesignChallenge1/23.png" style="width:100%" onclick="onClick(this)" alt="I wrote prompts for AI to generate this smartwatch model; I did not model it manually. This Blender view shows the back of the generated watch, including the sensor area, strap holes and buckle.">
+      <img src="images/DesignChallenge1/24.png" style="width:100%" onclick="onClick(this)" alt="This is a front preview of the smartwatch model generated by AI from my prompts. It shows the case, screen, side controls and curved strap together.">
+      <img src="images/DesignChallenge1/25.png" style="width:100%" onclick="onClick(this)" alt="This rendered Blender view shows the AI-generated smartwatch with materials, lighting and a ground shadow. My contribution to the model was writing the prompts.">
+    </div>
+  </div>
+  
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="DesignChallenge2">
+    <h2>Design Challenge 2</h2>
+    <div class="grid">
+      <img src="images/DesignChallenge2/1.png" style="width:100%" onclick="onClick(this)" alt="I wrote a prompt describing the duck references and what I wanted ChatGPT to model.">
+      <img src="images/DesignChallenge2/2.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT studied my duck photos and identified the main shapes and missing details.">
+      <img src="images/DesignChallenge2/3.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT suggested how to build the mesh, UVs, materials, and renders.">
+      <img src="images/DesignChallenge2/4.png" style="width:100%" onclick="onClick(this)" alt="I reviewed ChatGPT&#x27;s plan and trade-offs before starting the model.">
+      <img src="images/DesignChallenge2/5.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT delivered an editable clay model and supporting files.">
+      <img src="images/DesignChallenge2/6.png" style="width:100%" onclick="onClick(this)" alt="This first clay render let me check the duck&#x27;s overall shape.">
+      <img src="images/DesignChallenge2/7.png" style="width:100%" onclick="onClick(this)" alt="In Blender&#x27;s side view, I noticed the duck&#x27;s backside looked too flat.">
+      <img src="images/DesignChallenge2/8.png" style="width:100%" onclick="onClick(this)" alt="I turned on Proportional Editing and pulled selected vertices outward to round the backside.">
+      <img src="images/DesignChallenge2/9.png" style="width:100%" onclick="onClick(this)" alt="The adjusted side view shows a fuller, smoother backside.">
+      <img src="images/DesignChallenge2/10.png" style="width:100%" onclick="onClick(this)" alt="I asked ChatGPT to turn the white clay duck into a yellow plastic toy.">
+      <img src="images/DesignChallenge2/11.png" style="width:100%" onclick="onClick(this)" alt="ChatGPT set up color, roughness, metallic, and normal textures in Blender.">
+      <img src="images/DesignChallenge2/12.png" style="width:100%" onclick="onClick(this)" alt="The first material render shows a glossy yellow plastic duck close to my reference.">
+      <img src="images/DesignChallenge2/13.png" style="width:100%" onclick="onClick(this)" alt="I checked the duck&#x27;s front view and its material setup.">
+      <img src="images/DesignChallenge2/14.png" style="width:100%" onclick="onClick(this)" alt="I checked the side view to see how the finish worked across the whole body.">
+      <img src="images/DesignChallenge2/15.png" style="width:100%" onclick="onClick(this)" alt="I started modeling a pumpkin based on one I painted myself.">
+      <img src="images/DesignChallenge2/16.png" style="width:100%" onclick="onClick(this)" alt="I added orange paint and a brown stem while keeping the pumpkin&#x27;s uneven grooves.">
+      <img src="images/DesignChallenge2/17.png" style="width:100%" onclick="onClick(this)" alt="I checked how the paint and face texture wrapped onto the pumpkin&#x27;s underside.">
+      <img src="images/DesignChallenge2/18.png" style="width:100%" onclick="onClick(this)" alt="Because I painted the face by hand, I put its irregular eyes, smile, and heart into a texture image instead of raised geometry.">
+      <img src="images/DesignChallenge2/19.png" style="width:100%" onclick="onClick(this)" alt="I checked the pumpkin&#x27;s painted face under Blender&#x27;s rendered lighting.">
+      <img src="images/DesignChallenge2/20.png" style="width:100%" onclick="onClick(this)" alt="Fitting the thin speaker rim onto the earphone&#x27;s curved shell was a tricky part of the model.">
+      <img src="images/DesignChallenge2/21.png" style="width:100%" onclick="onClick(this)" alt="This clay view shows the full earphone shape and its curved connecting band.">
+      <img src="images/DesignChallenge2/22.png" style="width:100%" onclick="onClick(this)" alt="I added a metallic material and adjusted its texture maps for a reflective finish.">
+      <img src="images/DesignChallenge2/23.png" style="width:100%" onclick="onClick(this)" alt="In rendered view, I checked the chrome reflections and speaker grille.">
+      <img src="images/DesignChallenge2/24.png" style="width:100%" onclick="onClick(this)" alt="Following my teacher&#x27;s Cinema 4D tutorial, I modeled the desk lamp&#x27;s shade, arm, and base.">
+      <img src="images/DesignChallenge2/25.png" style="width:100%" onclick="onClick(this)" alt="I finished the tutorial lamp with a dark exterior and a light interior.">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="MaterialWorkshop1" >
+    <h2>Material Workshop 1</h2>
+    <div class="grid">
+      <img src="images/Workshop1/01-industrial-design-tyvek-card-prototyping.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="Tyvek, card pattern templates, and wire used for Industrial Design prototyping." data-caption="<strong>Material:</strong> Tyvek sheet, card pattern templates, and metal wire.<br><strong>Program:</strong> Industrial Design Studio, physical prototyping and model making.<br><strong>Use:</strong> Flat patterns are cut, taped, folded, and assembled to test full-scale dimensions before a final object is manufactured. Tyvek behaves like paper or fabric but is lighter, water-resistant, and harder to tear, so it can survive repeated folding and handling during prototype development.">
+      <img src="images/Workshop1/02-industrial-design-product-prototype.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="An Industrial Design display showing study models for a modular travel and storage product." data-caption="<strong>Material:</strong> Card and foam-board study models, with proposed polycarbonate shells, carbon-fibre rods, rubber wheels, and HDPE hinges identified in the display.<br><strong>Program:</strong> Industrial Design Studio, product development.<br><strong>Use:</strong> Designers build scaled and full-size prototypes to test storage layout, handles, hinges, clips, moving parts, and everyday usability before committing to production materials.">
+      <img src="images/Workshop1/03-furniture-design-woodshop-machinery.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="Woodworking machinery and dust collection inside Sheridan's Furniture Studio." data-caption="<strong>Material:</strong> Solid wood, plywood, and engineered wood boards.<br><strong>Program:</strong> Furniture Studio, woodworking and furniture fabrication.<br><strong>Use:</strong> Large boards and smaller components are measured, sawn, planed, shaped, joined, and sanded with shop machinery. These processes turn raw lumber into accurate parts for chairs, tables, cabinets, and furniture prototypes.">
+      <img src="images/Workshop1/04-furniture-design-lumber-storage.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="Boards, strips, and live-edge lumber stored in Sheridan's Furniture Studio." data-caption="<strong>Material:</strong> Solid lumber in boards, strips, blocks, and live-edge slabs.<br><strong>Program:</strong> Furniture Studio, furniture design and fabrication.<br><strong>Use:</strong> Students select wood by species, grain, thickness, strength, and visual character. Wide boards can become seats or tabletops, while narrower strips and blocks become legs, frames, joints, mock-ups, and smaller structural components.">
+      <img src="images/Workshop1/05-glass-studio-blown-glass-forms.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="Clear blown-glass vessels and coloured glass rods in Sheridan's Glass Studio." data-caption="<strong>Material:</strong> Clear and coloured glass.<br><strong>Program:</strong> Glass Studio, hot glassforming and flame-working.<br><strong>Use:</strong> Glass is heated until workable, gathered from a furnace or heated as a rod, then blown, stretched, rotated, and shaped with tools. The small vessels show how a molten glass bubble can be formed into a hollow object, while coloured rods provide decorative material and detail.">
+      <img src="images/Workshop1/06-glass-studio-sculptural-glass.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="Small sculptural glass insects, animals, pendants, and glass rods." data-caption="<strong>Material:</strong> Transparent and coloured glass rods and hot-worked glass.<br><strong>Program:</strong> Glass Studio, flame-working and sculptural glass.<br><strong>Use:</strong> Heat softens the glass so separate sections can be pulled, bent, joined, and layered. This allows students to form delicate legs, wings, bodies, surface patterns, pendants, and small sculptural objects before controlled cooling.">
+      <img src="images/Workshop1/07-ceramics-studio-clay-works.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A Ceramics Studio display of vessels, figures, reliefs, tiles, and sculptural clay work." data-caption="<strong>Material:</strong> Clay and fired ceramic, with slips, glazes, and surface finishes.<br><strong>Program:</strong> Ceramics Studio, pottery, sculpture, and ceramic design.<br><strong>Use:</strong> Students shape clay through handbuilding, wheelthrowing, mouldmaking, and slipcasting. After drying, pieces are fired and may be glazed or otherwise finished to create vessels, figures, wall works, tiles, and sculptural forms.">
+      <img src="images/Workshop1/08-ceramics-studio-porcelain-slip.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A container of prepared Cone 6 porcelain material in Sheridan's Ceramics Studio." data-caption="<strong>Material:</strong> Cone 6 porcelain clay or porcelain slip mixed with water.<br><strong>Program:</strong> Ceramics Studio, clay preparation and ceramic fabrication.<br><strong>Use:</strong> Porcelain can be mixed and hydrated before forming or slipcasting. The prepared material is shaped into objects, allowed to dry, and then fired at the appropriate temperature to become a hard ceramic body.">
+      <img src="images/Workshop1/09-textiles-stitch-sampler.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A hand-stitch sampler held under tension in an embroidery hoop." data-caption="<strong>Material:</strong> Woven cotton fabric, embroidery thread, and a wooden hoop.<br><strong>Program:</strong> Textiles Studio, hand embroidery and stitch development.<br><strong>Use:</strong> The hoop keeps the cloth under even tension while the maker tests stitch length, spacing, density, direction, and thread weight. A sampler records technique before those stitches are used in a finished textile piece.">
+      <img src="images/Workshop1/10-textiles-patchwork-embroidery.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A layered textile composition made from stitched fabric scraps, thread, beads, and buttons." data-caption="<strong>Material:</strong> Woven fabric scraps, embroidery thread, beads, buttons, and layered textile pieces.<br><strong>Program:</strong> Textiles Studio, surface design and hand stitching.<br><strong>Use:</strong> Pieces are layered, patched, appliqued, and stitched together to explore colour, texture, rhythm, repair, and composition. Thread both joins the material and becomes a visible drawing element on the surface.">
+      <img src="images/Workshop1/12-textiles-finished-embroidery.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A finished embroidered textile character made with dense hand stitching." data-caption="<strong>Material:</strong> Woven cloth, embroidery floss, and soft filling or backing.<br><strong>Program:</strong> Textiles Studio, embroidered illustration and textile object making.<br><strong>Use:</strong> Dense stitches create the character's outlines, colour, and tactile surface. The embroidered cloth can remain a flat artwork or be cut, backed, and assembled into a small soft object.">
+      <img src="images/Workshop1/13-textiles-screen-printing-tools.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="Wood-handled screen-printing squeegees, drying equipment, and measuring tools stored in Sheridan's Textiles Studio." data-caption="<strong>Material:</strong> Wood-handled rubber squeegees, handheld dryers, an air-circulation fan, and measuring squares.<br><strong>Program:</strong> Textiles Studio, screen printing and surface design.<br><strong>Use:</strong> The squeegees are pushed or pulled across a mesh screen to transfer textile ink or dye paste through a stencil and onto fabric. The handheld dryers and fan help speed surface drying between samples or colour layers, while the measuring tools help align screens and patterns.">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="MaterialWorkshop2" >
+    <h2>Material Workshop 2</h2>
+    <div class="grid">
+      <img src="images/Workshop2/workshop2-01-sponge-soap-glass.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A natural sponge, a bar of soap, and a clear cast-glass block compared during a classroom material study." data-caption="<strong>Materials:</strong> Natural sponge, bar soap, and cast glass.<br><strong>State:</strong> The sponge is a cleaned and dried natural material. The soap and glass are refined and manufactured.<br><strong>Qualities:</strong> The yellow sponge is opaque, porous, and pliable at the surface but firmer when dry. The opaque soap is firm yet can be scratched or indented. The clear glass is rigid, cool, uneven, and distorts objects through its curved surface.<br><strong>Uses:</strong> The sponge and soap support washing and cleaning. Glass is used where a hard transparent surface is needed.">
+      <img src="images/Workshop2/workshop2-02-glass-sample.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A transparent cast-glass sample containing bubbles and raised lettering." data-caption="<strong>Material:</strong> Cast glass.<br><strong>State:</strong> Refined, melted, cast, and cooled.<br><strong>Qualities:</strong> Clear, transparent, rigid, hard, and cool to the touch. Air bubbles, raised lettering, and uneven curved surfaces refract light and make the hand behind it appear distorted.<br><strong>Uses:</strong> Windows, containers, tableware, optical lenses, screens, and glass art.">
+      <img src="images/Workshop2/workshop2-03-soap-sample.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A worn yellow bar of soap held during a classroom material study." data-caption="<strong>Material:</strong> Bar soap.<br><strong>State:</strong> Refined and moulded cleaning material.<br><strong>Qualities:</strong> Pale yellow, opaque, firm, and slightly waxy. A fingernail can scratch or indent it, while worn edges and small surface marks show abrasion from use.<br><strong>Uses:</strong> Washing skin, dishes, or laundry, depending on the formulation.">
+      <img src="images/Workshop2/workshop2-04-natural-sponge-sample.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A yellow natural sponge showing its porous and fibrous surface." data-caption="<strong>Material:</strong> Natural sponge.<br><strong>State:</strong> A natural porous structure that has been cleaned and dried.<br><strong>Qualities:</strong> Yellow, opaque, lightweight, porous, and compressible, with a short fibrous surface. When dry, its interior feels firmer than its surface. It becomes softer and more flexible after absorbing water.<br><strong>Uses:</strong> Bathing, washing dishes, general cleaning, and applying paint or glaze.">
+      <img src="images/Workshop2/workshop2-05-wood-clear-plastic-yarn.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A wood block, a clear plastic rod, and a ball of alpaca-cotton yarn compared in class." data-caption="<strong>Materials:</strong> Pine wood, clear plastic, and yarn made from 50% superfine alpaca and 50% organic cotton.<br><strong>State:</strong> Cut wood, extruded and cut plastic, and spun fibre wound into a ball.<br><strong>Qualities:</strong> The wood is light brown, opaque, and rigid, with smooth long faces and rough end grain that can be dented. The plastic is clear, lightweight, and rigid, but its cut ends look cloudy and distort the view. The grey yarn is opaque, soft, pliable, fibrous, and compressible as a bundle.<br><strong>Uses:</strong> Wood supports buildings, furniture, and tools. Clear plastic is used for prototypes, displays, and lightweight parts. Yarn becomes garments, scarves, and soft textile objects.">
+      <img src="images/Workshop2/workshop2-06-polymer-metal-marble.jpg" loading="lazy" decoding="async" onclick="onClick(this)" alt="A purple polymer profile, a metal component, and a marble tile compared during a material study." data-caption="<strong>Materials:</strong> Purple polymer, a metal component, and marble tile.<br><strong>State:</strong> Refined materials that have been cut, formed, or machined into samples and parts.<br><strong>Qualities:</strong> The purple polymer is lightweight and rigid, with a smooth exterior and a rough cut face. The metal is dark, dense, heavy, hard, cool, and produces a clear ringing sound when tapped. The off-white marble is heavy, opaque, very rigid, and smooth, with no visible deformation under hand pressure.<br><strong>Uses:</strong> Polymers form profiles, housings, and prototypes. Metal is used for durable fittings, tools, and machine parts. Marble is used for floors, wall tiles, counters, and decorative surfaces.">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+  <!-- Boilerplate -->
+  <div id="Project1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 1</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Project 1 Models</h2>
+    <h2>Published 3D Model 1</h2>
+    <p>PLACEHOLDER TEXT, put a description here or you will lose grades
+    </p>
+    <img src="images/final/happy.png" style="width:50%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://hudak.phoenix.sheridanc.on.ca/P1Stuff/Index.html'></iframe></div>">
+    <h2>Published 3D Model 2</h2>
+    <p>PLACEHOLDER TEXT, put a description here or you will lose grades
+    </p>
+    <img src="images/final/happy.png" style="width:50%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://hudak.phoenix.sheridanc.on.ca/P1Stuff/Index.html'></iframe></div>">
+    <h2>Published 3D Model 3</h2>
+    <p>PLACEHOLDER TEXT, put a description here or you will lose grades
+    </p>
+    <img src="images/final/happy.png" style="width:50%" onclick="onClick(this)" alt="put a description here or you will lose grades <div class='container'><iframe class='responsive-iframe' src='https://hudak.phoenix.sheridanc.on.ca/P1Stuff/Index.html'></iframe></div>">
+  </div>
+  
+   <!-- Modal for full size images on click-->
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+      <img src="img01" id="img01" class="w3-image">
+      <h2 id="caption"></h2>
+
+      <!-- <div id="urLink"></div> -->
+      <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+    <!-- </div> -->
+  </div>
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+</div>
+<script>
+
+// Modal Image Gallery
+function onClick(element) {
+  var modal = document.getElementById("modal01");
+  var isChallenge = !!element.closest("#DesignChallenge1, #DesignChallenge2, #MaterialWorkshop1, #MaterialWorkshop2");
+  modal.classList.toggle("challenge-fit", isChallenge);
+  document.getElementById("img01").src = element.src;
+
+  modal.style.display = isChallenge ? "flex" : "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.dataset.caption || element.alt;
+
+  // var captionUrl = document.getElementById("urLink");
+  // captionUrl.innerHTML = element.url;
+
+  //document.getElementById("urLink").src = element.url;
+}
+</script>
+
+</body>
+</html>

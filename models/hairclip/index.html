@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dde5ec">
+  <meta name="description" content="Interactive study of one button hair clip across sixteen materials.">
+  <title>Button Hair Clip — Sixteen-Material Study</title>
+  <script type="module" src="./model-viewer.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #252220;
+      --muted: #6f6864;
+      --paper: #dde5ec;
+      --glass: rgba(255, 255, 255, 0.78);
+      --line: rgba(78, 68, 62, 0.12);
+      --accent: #a55f78;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      overflow: hidden;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,0.98) 0 18%, rgba(255,255,255,0) 61%),
+        var(--paper);
+    }
+    model-viewer {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      --poster-color: transparent;
+      --progress-bar-color: var(--accent);
+      --progress-bar-height: 2px;
+    }
+    .glass {
+      position: fixed;
+      z-index: 2;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 14px 40px rgba(53, 45, 41, 0.08);
+    }
+    .label {
+      top: 22px;
+      left: 22px;
+      width: min(330px, calc(100vw - 286px));
+      min-width: 260px;
+      padding: 13px 15px 14px;
+      border-radius: 14px;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+    .label strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+      font-weight: 680;
+      line-height: 1.25;
+    }
+    .label p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .selector {
+      top: 22px;
+      right: 22px;
+      width: 224px;
+      padding: 11px 12px 12px;
+      border-radius: 14px;
+    }
+    .selector label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    select {
+      width: 100%;
+      min-height: 35px;
+      padding: 7px 30px 7px 10px;
+      border: 1px solid rgba(92, 75, 72, 0.18);
+      border-radius: 10px;
+      color: var(--ink);
+      background: rgba(255,255,255,0.88);
+      font: inherit;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+    select:focus { border-color: rgba(165, 95, 120, 0.65); }
+    .tools {
+      left: 22px;
+      bottom: 20px;
+      display: flex;
+      gap: 7px;
+      padding: 7px;
+      border-radius: 999px;
+    }
+    button {
+      min-height: 32px;
+      padding: 7px 11px;
+      border: 1px solid rgba(92, 75, 72, 0.14);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.76);
+      font: inherit;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    button:hover, button[aria-pressed="true"] {
+      color: var(--ink);
+      border-color: rgba(165, 95, 120, 0.42);
+      background: rgba(255,255,255,0.98);
+    }
+    .status {
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      max-width: calc(100vw - 330px);
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    @media (max-width: 700px) {
+      .label {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        min-width: 0;
+      }
+      .selector {
+        top: 103px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        padding: 8px 10px 9px;
+      }
+      .selector label { display: none; }
+      .tools { left: 12px; bottom: 12px; }
+      .status {
+        right: 12px;
+        left: auto;
+        bottom: 12px;
+        max-width: calc(100vw - 210px);
+        transform: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    @media (max-width: 440px) {
+      .label p { display: none; }
+      .selector { top: 79px; }
+      .status { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <model-viewer
+    id="clip"
+    src="./models/HairClip_All16.glb"
+    alt="Interactive overview of one button hair clip explored in sixteen materials"
+    camera-controls
+    touch-action="pan-y"
+    interaction-prompt="auto"
+    environment-image="neutral"
+    exposure="1.35"
+    shadow-intensity="0.62"
+    shadow-softness="0.9"
+    camera-orbit="35deg 60deg 112%"
+    min-camera-orbit="auto 10deg 70%"
+    max-camera-orbit="auto 170deg 280%"
+    field-of-view="30deg">
+  </model-viewer>
+
+  <section class="label glass" aria-live="polite">
+    <span class="eyebrow">Button Hair Clip · Material Study</span>
+    <strong id="materialName">All 16 Materials</strong>
+    <p id="materialDescription">One form, sixteen surface identities. Select a material to inspect the clip on its own.</p>
+  </section>
+
+  <section class="selector glass">
+    <label for="materialSelect">Choose a material</label>
+    <select id="materialSelect" aria-label="Choose a button hair clip material">
+      <option value="All16">Overview · All 16 Materials</option>
+      <option value="Original">01 · Original Pink</option>
+      <option value="FullGold">02 · Full Gold</option>
+      <option value="Matte">03 · Soft Matte</option>
+      <option value="TransparentAcrylic">04 · Transparent Acrylic</option>
+      <option value="GlossyPlastic">05 · Glossy Plastic</option>
+      <option value="Holographic">06 · Holographic</option>
+      <option value="Glitter">07 · Pink Glitter</option>
+      <option value="Emissive">08 · Pink Emissive</option>
+      <option value="Paper">09 · Pink Paper</option>
+      <option value="MotherOfPearl">10 · Mother of Pearl</option>
+      <option value="Ceramic">11 · Glazed Ceramic</option>
+      <option value="Silicone">12 · Soft Silicone</option>
+      <option value="Glass">13 · Pink Glass</option>
+      <option value="Candy">14 · Pink Candy</option>
+      <option value="Velvet">15 · Pink Velvet</option>
+      <option value="Wood">16 · Pink Wood</option>
+    </select>
+  </section>
+
+  <div class="tools glass">
+    <button id="reset" type="button">Reset View</button>
+    <button id="rotate" type="button" aria-pressed="false">Auto Rotate</button>
+  </div>
+  <div class="status glass" id="status" role="status" aria-live="polite">Loading all 16 materials…</div>
+
+  <script>
+    const variants = {
+      All16: {
+        name: 'All 16 Materials',
+        description: 'One form, sixteen surface identities. Select a material to inspect the clip on its own.',
+        alt: 'Interactive overview of one button hair clip explored in sixteen materials'
+      },
+      Original: {
+        name: 'Original Pink',
+        description: 'Glossy pink molded polymer paired with the warm metal clip.',
+        alt: 'Interactive 3D model of the original pink button hair clip'
+      },
+      FullGold: {
+        name: 'Full Gold',
+        description: 'A continuous metallic treatment turns the decorative clip into a jewellery-like object.',
+        alt: 'Interactive 3D model of a full-gold button hair clip'
+      },
+      Matte: {
+        name: 'Soft Matte',
+        description: 'Reduced reflections make the same geometry feel softer and quieter.',
+        alt: 'Interactive 3D model of a matte button hair clip'
+      },
+      TransparentAcrylic: {
+        name: 'Transparent Acrylic',
+        description: 'Tinted transparency reveals depth around the rim and four openings.',
+        alt: 'Interactive 3D model of a transparent acrylic button hair clip'
+      },
+      GlossyPlastic: {
+        name: 'Glossy Plastic',
+        description: 'Bright highlights and saturated colour emphasize a playful manufactured finish.',
+        alt: 'Interactive 3D model of a glossy plastic button hair clip'
+      },
+      Holographic: {
+        name: 'Holographic',
+        description: 'Iridescent colour shifts change as the model turns under the environment light.',
+        alt: 'Interactive 3D model of a holographic button hair clip'
+      },
+      Glitter: {
+        name: 'Pink Glitter',
+        description: 'Fine reflective particles add decorative sparkle across the pink surface.',
+        alt: 'Interactive 3D model of a pink glitter button hair clip'
+      },
+      Emissive: {
+        name: 'Pink Emissive',
+        description: 'A soft luminous treatment tests how light can become part of the material identity.',
+        alt: 'Interactive 3D model of a pink emissive button hair clip'
+      },
+      Paper: {
+        name: 'Pink Paper',
+        description: 'Subtle fibres and diffuse reflection make the rigid form appear lighter and handmade.',
+        alt: 'Interactive 3D model of a pink paper button hair clip'
+      },
+      MotherOfPearl: {
+        name: 'Mother of Pearl',
+        description: 'Pale layered colour and delicate iridescence create a shell-like finish.',
+        alt: 'Interactive 3D model of a mother-of-pearl button hair clip'
+      },
+      Ceramic: {
+        name: 'Glazed Ceramic',
+        description: 'A smooth glaze combines strong highlights with a heavier visual character.',
+        alt: 'Interactive 3D model of a glazed ceramic button hair clip'
+      },
+      Silicone: {
+        name: 'Soft Silicone',
+        description: 'Muted highlights suggest a flexible, grippy and touchable surface.',
+        alt: 'Interactive 3D model of a soft silicone button hair clip'
+      },
+      Glass: {
+        name: 'Pink Glass',
+        description: 'Transparency and internal depth make the solid button appear fragile and luminous.',
+        alt: 'Interactive 3D model of a pink glass button hair clip'
+      },
+      Candy: {
+        name: 'Pink Candy',
+        description: 'Rounded highlights and slight translucency create a soft confectionery appearance.',
+        alt: 'Interactive 3D model of a pink candy button hair clip'
+      },
+      Velvet: {
+        name: 'Pink Velvet',
+        description: 'A fabric-like response softens the outline and reduces the sense of hard plastic.',
+        alt: 'Interactive 3D model of a pink velvet button hair clip'
+      },
+      Wood: {
+        name: 'Pink Wood',
+        description: 'Visible grain introduces natural direction and warmth to the manufactured form.',
+        alt: 'Interactive 3D model of a pink wood button hair clip'
+      }
+    };
+
+    const viewer = document.getElementById('clip');
+    const select = document.getElementById('materialSelect');
+    const name = document.getElementById('materialName');
+    const description = document.getElementById('materialDescription');
+    const status = document.getElementById('status');
+    const rotate = document.getElementById('rotate');
+
+    function orbitFor(id) {
+      const narrow = window.matchMedia('(max-width: 600px)').matches;
+      if (narrow) return id === 'All16' ? '35deg 60deg 150%' : '35deg 60deg 225%';
+      return id === 'All16' ? '35deg 60deg 112%' : '35deg 60deg 155%';
+    }
+
+    function setVariant(id) {
+      const material = variants[id];
+      name.textContent = material.name;
+      description.textContent = material.description;
+      viewer.alt = material.alt;
+      status.textContent = id === 'All16' ? 'Loading all 16 materials…' : `Loading ${material.name}…`;
+      viewer.autoRotate = false;
+      rotate.setAttribute('aria-pressed', 'false');
+      rotate.textContent = 'Auto Rotate';
+      viewer.src = `./models/HairClip_${id}.glb`;
+      viewer.cameraOrbit = orbitFor(id);
+      viewer.fieldOfView = '30deg';
+    }
+
+    select.addEventListener('change', event => setVariant(event.target.value));
+    viewer.addEventListener('load', () => {
+      status.textContent = select.value === 'All16'
+        ? 'Choose a material, then drag to rotate'
+        : 'Drag to rotate · Scroll or pinch to zoom';
+    });
+    viewer.addEventListener('error', () => {
+      status.textContent = 'The selected 3D model could not be loaded';
+    });
+    document.getElementById('reset').addEventListener('click', () => {
+      viewer.cameraOrbit = orbitFor(select.value);
+      viewer.fieldOfView = '30deg';
+      viewer.jumpCameraToGoal();
+    });
+    rotate.addEventListener('click', () => {
+      const next = !viewer.autoRotate;
+      viewer.autoRotate = next;
+      rotate.setAttribute('aria-pressed', String(next));
+      rotate.textContent = next ? 'Stop Rotation' : 'Auto Rotate';
+    });
+    window.addEventListener('resize', () => {
+      viewer.cameraOrbit = orbitFor(select.value);
+      viewer.jumpCameraToGoal();
+    });
+  </script>
+</body>
+</html>

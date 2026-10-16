@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duck — Interactive 3D Model</title>
+  <script type="module" src="./model-viewer.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #252220;
+      --muted: #6f6864;
+      --paper: #dde5ec;
+      --glass: rgba(255, 255, 255, 0.76);
+      --line: rgba(78, 68, 62, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,0.98) 0 18%, rgba(255,255,255,0) 60%),
+        var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    model-viewer {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      --poster-color: transparent;
+      --progress-bar-color: #977e77;
+      --progress-bar-height: 2px;
+    }
+    .label, .status {
+      position: fixed;
+      z-index: 2;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 14px 40px rgba(53, 45, 41, 0.08);
+    }
+    .label {
+      top: 24px;
+      left: 24px;
+      max-width: min(320px, calc(100vw - 48px));
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+    .label strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: 0.01em;
+    }
+    .label span, .status {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .status {
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      padding: 9px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    @media (max-width: 600px) {
+      .label { top: 16px; left: 16px; }
+      .status { bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <model-viewer
+    id="duck"
+    src="./Duck_v003d.glb"
+    alt="Interactive 3D model of a yellow duck toy with raised hands"
+    camera-controls
+    touch-action="pan-y"
+    interaction-prompt="auto"
+    environment-image="neutral"
+    exposure="1.25"
+    shadow-intensity="0.85"
+    shadow-softness="0.9"
+    camera-orbit="20deg 72deg 110%"
+    min-camera-orbit="auto 10deg 72%"
+    max-camera-orbit="auto 170deg 240%"
+    field-of-view="30deg">
+  </model-viewer>
+
+  <div class="label">
+    <strong>Duck · Interactive 3D Model</strong>
+    <span>Drag to rotate · Scroll or pinch to zoom</span>
+  </div>
+  <div class="status" id="status" role="status">Loading 3D model…</div>
+
+  <script>
+    const viewer = document.getElementById('duck');
+    const status = document.getElementById('status');
+    viewer.addEventListener('load', () => {
+      status.textContent = 'Drag the model to explore every angle';
+    });
+    viewer.addEventListener('error', () => {
+      status.textContent = 'The 3D model could not be loaded';
+    });
+  </script>
+</body>
+</html>
